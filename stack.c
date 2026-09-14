@@ -170,7 +170,42 @@ void infoTopString(TStackString S, char elemen[]) {
 
 /* Soal 1 - Pengecekan Kata Palindrom */
 boolean isPalindrome(char kata[]) {
-	/* TODO: isi algoritma di sini */
+	// Kamus Lokal
+    int n,i;
+    char x;
+    TStackChar T;
+
+    // Algoritma
+    n = strlen(kata);
+    createStack(&T);
+    for (int i = 0; i < n/2; i++) {
+        push(&T, kata[i]);
+    }
+    if (n % 2 == 0) {
+        for (int i = (n/2); i < n; i++) {
+            pop(&T, &x);
+            if (kata[i] != x ) {
+                return false;
+            }
+        }
+        if (!isEmptyStack(T)){
+            return false;
+        }else {
+            return true;
+        }
+    }else {
+        for (int i = (n/2) + 1; i < n; i++) {
+            pop(&T, &x);
+            if (kata[i] != x ) {
+                return false;
+            }
+        }
+        if (!isEmptyStack(T)){
+            return false;
+        }else {
+            return true;
+        } 
+	}
 }
 
 /* Soal 2 - Parentheses Checker */
