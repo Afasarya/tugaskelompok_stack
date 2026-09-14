@@ -177,30 +177,30 @@ boolean isPalindrome(char kata[]) {
 
     // Algoritma
     n = strlen(kata);
-    createStack(&T);
+    createStackChar(&T);
     for (int i = 0; i < n/2; i++) {
-        push(&T, kata[i]);
+        pushChar(&T, kata[i]);
     }
     if (n % 2 == 0) {
         for (int i = (n/2); i < n; i++) {
-            pop(&T, &x);
+            popChar(&T, &x);
             if (kata[i] != x ) {
                 return false;
             }
         }
-        if (!isEmptyStack(T)){
+        if (!isEmptyStackChar(T)){
             return false;
         }else {
             return true;
         }
     }else {
         for (int i = (n/2) + 1; i < n; i++) {
-            pop(&T, &x);
+            popChar(&T, &x);
             if (kata[i] != x ) {
                 return false;
             }
         }
-        if (!isEmptyStack(T)){
+        if (!isEmptyStackChar(T)){
             return false;
         }else {
             return true;
