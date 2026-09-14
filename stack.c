@@ -10,8 +10,8 @@
 /* boolean.h sudah ter-include lewat stack.h */
 
 /* =======================================================================
-   1) STACK OF CHARACTER
-   ========================================================================= */
+1) STACK OF CHARACTER
+========================================================================= */
 
 /* KONSTRUKTOR */
 void createStackChar(TStackChar *S) {
@@ -61,8 +61,8 @@ char infoTopChar(TStackChar S) {
 
 
 /* =======================================================================
-   2) STACK OF DOUBLE
-   ========================================================================= */
+2) STACK OF DOUBLE
+========================================================================= */
 
 /* KONSTRUKTOR */
 void createStackDouble(TStackDouble *S) {
@@ -112,8 +112,8 @@ double infoTopDouble(TStackDouble S) {
 
 
 /* =======================================================================
-   3) STACK OF STRING
-   ========================================================================= */
+3) STACK OF STRING
+========================================================================= */
 
 /* KONSTRUKTOR */
 void createStackString(TStackString *S) {
@@ -165,8 +165,8 @@ void infoTopString(TStackString S, char elemen[]) {
 
 
 /* =======================================================================
-   FUNGSI APLIKASI (SOAL 1-5)
-   ========================================================================= */
+FUNGSI APLIKASI (SOAL 1-5)
+========================================================================= */
 
 /* Soal 1 - Pengecekan Kata Palindrom */
 boolean isPalindrome(char kata[]) {
@@ -177,30 +177,30 @@ boolean isPalindrome(char kata[]) {
 
     // Algoritma
     n = strlen(kata);
-    createStack(&T);
+    createStackChar(&T);
     for (int i = 0; i < n/2; i++) {
-        push(&T, kata[i]);
+        pushChar(&T, kata[i]);
     }
     if (n % 2 == 0) {
         for (int i = (n/2); i < n; i++) {
-            pop(&T, &x);
+            popChar(&T, &x);
             if (kata[i] != x ) {
                 return false;
             }
         }
-        if (!isEmptyStack(T)){
+        if (!isEmptyStackChar(T)){
             return false;
         }else {
             return true;
         }
     }else {
         for (int i = (n/2) + 1; i < n; i++) {
-            pop(&T, &x);
+            popChar(&T, &x);
             if (kata[i] != x ) {
                 return false;
             }
         }
-        if (!isEmptyStack(T)){
+        if (!isEmptyStackChar(T)){
             return false;
         }else {
             return true;
@@ -216,13 +216,13 @@ boolean isValidParentheses(char kata[]) {
 	boolean valid = true;
 	createStackChar(&S);
 	panjang = strlen(kata);
- 
+
 	for (i = 0; i < panjang && valid; i++) {
 		char c = kata[i];
- 
+
 		if (c == '(' || c == '[' || c == '{') {
 			pushChar(&S, c);
- 
+
 		} else if (c == ')' || c == ']' || c == '}') {
 			if (isEmptyStackChar(S)) {
 				valid = false;
@@ -236,26 +236,38 @@ boolean isValidParentheses(char kata[]) {
 			}
 		}
 	}
- 
 
 	if (valid && !isEmptyStackChar(S)) {
 		valid = false;
 	}
- 
+
 	return valid;
 }
 
 /* Soal 3 - Undo/Redo Text Editor */
 void executeCommand(TStackString *undoStack, TStackString *redoStack, char perintah[]) {
-	/* TODO: isi algoritma di sini */
+	pushString(undoStack, perintah);
+	createStackString(redoStack);
 }
 
 void undoCommand(TStackString *undoStack, TStackString *redoStack) {
-	/* TODO: isi algoritma di sini */
+	char temp[MAKS_STR];
+	if (!isEmptyStackString(*undoStack)) {
+		popString(undoStack, temp);
+		pushString(redoStack, temp);
+	} else {
+		printf("Tidak ada perintah untuk di-undo.\n");
+	}
 }
 
 void redoCommand(TStackString *undoStack, TStackString *redoStack) {
-	/* TODO: isi algoritma di sini */
+	char temp[MAKS_STR];
+	if (!isEmptyStackString(*redoStack)) {
+		popString(redoStack, temp);
+		pushString(undoStack, temp);
+	} else {
+		printf("Tidak ada perintah untuk di-redo.\n");
+	}
 }
 
 /* Soal 4 - Konversi Infix ke Postfix */

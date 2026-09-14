@@ -13,15 +13,15 @@
 #define MAKS_STR     100   /* panjang maksimum satu string elemen */
 
 /* =======================================================================
-   1) STACK OF CHARACTER
-   Dipakai di: Soal 1 (Palindrom), Soal 2 (Cek Kurung),
-               Soal 4 (operator & '(' pada Infix->Postfix)
-   type TStackChar = < wadah: array[1..MAKS_STACK] of character,
+1) STACK OF CHARACTER
+Dipakai di: Soal 1 (Palindrom), Soal 2 (Cek Kurung),
+            Soal 4 (operator & '(' pada Infix->Postfix)
+type TStackChar = < wadah: array[1..MAKS_STACK] of character,
                         top  : integer >
-   asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
+asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
    ========================================================================= */
 typedef struct { char wadah[MAKS_STACK + 1];
-                 int  top; } TStackChar;
+                int  top; } TStackChar;
 
 /* KONSTRUKTOR */
 /* procedure createStackChar(output S: TStackChar)
@@ -62,14 +62,14 @@ char infoTopChar(TStackChar S);
 
 
 /* =======================================================================
-   2) STACK OF DOUBLE
-   Dipakai di: Soal 5 (Evaluasi Postfix Expression -> hasil bilangan real)
-   type TStackDouble = < wadah: array[1..MAKS_STACK] of real,
-                          top  : integer >
-   asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
+2) STACK OF DOUBLE
+Dipakai di: Soal 5 (Evaluasi Postfix Expression -> hasil bilangan real)
+type TStackDouble = < wadah: array[1..MAKS_STACK] of real,
+                        top  : integer >
+asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
    ========================================================================= */
 typedef struct { double wadah[MAKS_STACK + 1];
-                 int    top; } TStackDouble;
+                int    top; } TStackDouble;
 
 /* KONSTRUKTOR */
 /* procedure createStackDouble(output S: TStackDouble)
@@ -110,14 +110,14 @@ double infoTopDouble(TStackDouble S);
 
 
 /* =======================================================================
-   3) STACK OF STRING
-   Dipakai di: Soal 3 (Undo/Redo Text Editor -> elemen berupa perintah)
-   type TStackString = < wadah: array[1..MAKS_STACK] of string,
-                          top  : integer >
-   asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
+3) STACK OF STRING
+Dipakai di: Soal 3 (Undo/Redo Text Editor -> elemen berupa perintah)
+type TStackString = < wadah: array[1..MAKS_STACK] of string,
+					top  : integer >
+asumsi: indeks 0 tidak digunakan, top=0 artinya stack kosong
    ========================================================================= */
 typedef struct { char wadah[MAKS_STACK + 1][MAKS_STR];
-                 int  top; } TStackString;
+                int  top; } TStackString;
 
 /* KONSTRUKTOR */
 /* procedure createStackString(output S: TStackString)
@@ -158,8 +158,8 @@ void infoTopString(TStackString S, char elemen[]);
 
 
 /* =======================================================================
-   FUNGSI APLIKASI (SOAL 1-5)
-   ========================================================================= */
+FUNGSI APLIKASI (SOAL 1-5)
+========================================================================= */
 
 /* function isPalindrome(kata: string) -> boolean
 	{menggunakan TStackChar. Mengembalikan true jika kata adalah palindrom} */

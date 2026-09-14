@@ -13,14 +13,14 @@ int main() {
 	/*kamus*/
 	char kata[MAKS_STR]; 
 	boolean hasil, palindrome;        
- 
+
 	/*algoritma*/
 	printf("Masukkan ekspresi: ");
 	fgets(kata, sizeof(kata), stdin);
 	kata[strcspn(kata, "\n")] = '\0';
- 
+
 	hasil = isValidParentheses(kata);
- 
+
 	if (hasil) {
 		printf("Ekspresi VALID (pasangan kurung sesuai)\n");
 	} else {
@@ -34,6 +34,35 @@ int main() {
 		printf("Kata tidak palindrom");
 	}
 
+	printf("\n\n=== TEST UNDO/REDO ===\n");
+	TStackString undoStack, redoStack;
+	createStackString(&undoStack);
+	createStackString(&redoStack);
+
+	executeCommand(&undoStack, &redoStack, "ketik A");
+	executeCommand(&undoStack, &redoStack, "ketik B");
+	executeCommand(&undoStack, &redoStack, "ketik C");
+	printf("\nKONDISI AWAL%s\n");
+	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik C"
+	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+
+	undoCommand(&undoStack, &redoStack);
+	printf("\nUNDO%s\n");
+	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
+	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
 	
+	redoCommand(&undoStack, &redoStack);
+	printf("\nREDO%s\n");
+	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
+	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+	
+	undoCommand(&undoStack, &redoStack);
+	printf("\nUNDO%s\n");
+	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
+	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+	undoCommand(&undoStack, &redoStack);
+	printf("\nUNDO%s\n");
+	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
+	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
 	return 0;
 }
