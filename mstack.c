@@ -12,7 +12,7 @@
 int main() {
 	/*kamus*/
 	char kata[MAKS_STR]; 
-	boolean hasil;        
+	boolean hasil, palindrome;        
  
 	/*algoritma*/
 	printf("Masukkan ekspresi: ");
@@ -26,6 +26,14 @@ int main() {
 	} else {
 		printf("Ekspresi TIDAK VALID (pasangan kurung tidak sesuai)\n");
 	}
- 
+
+	palindrome = isPalindrome(kata);
+	if (palindrome){
+		printf("Kata Palindrom");
+	}else{
+		printf("Kata tidak palindrom");
+	}
+
+	
 	return 0;
 }
