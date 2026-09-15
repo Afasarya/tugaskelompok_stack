@@ -64,5 +64,18 @@ int main() {
 	printf("\nUNDO%s\n");
 	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
 	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+	
+	printf("\n=== TEST EVALUASI POSTFIX ===\n");
+	// Kamus Lokal
+    char postfix[MAKS_STR];
+    double hasil_postfix;
+
+    // Algoritma
+    printf("Masukkan postfix: ");
+    scanf("%[^\n]", postfix);
+
+    hasil_postfix = evaluatePostfix(postfix);
+
+    printf("Hasil = %.2f\n", hasil_postfix);
 	return 0;
 }

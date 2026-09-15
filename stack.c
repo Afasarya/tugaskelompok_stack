@@ -276,6 +276,89 @@ void infixToPostfix(char infix[], char postfix[]) {
 }
 
 /* Soal 5 - Evaluasi Postfix Expression */
+
+// Fungsi bantuan mengubah string menjadi double
+double stringToDouble(char token[]) {
+	// Kamus Lokal
+    double hasil = 0;
+    double pecahan = 0.1;
+    int i = 0;
+
+	//Algoritma
+    while (token[i] >= '0' && token[i] <= '9') {
+        hasil = hasil * 10 + (token[i] - '0');
+        i++;
+    }
+
+    if (token[i] == '.') {
+        i++;
+
+        while (token[i] >= '0' && token[i] <= '9') {
+            hasil = hasil + (token[i] - '0') * pecahan;
+            pecahan = pecahan * 0.1;
+            i++;
+        }
+    }
+
+    return hasil;
+}
+
+
 double evaluatePostfix(char postfix[]) {
-	/* TODO: isi algoritma di sini */
+	// Kamus Lokal
+	TStackDouble S;
+	char token[50];
+	char operator;
+	double operand1, operand2, operasi;
+	int i, j;
+
+	// Algoritma
+	createStackDouble(&S);
+
+	i = 0;
+
+	while (postfix[i] != '\0') {
+		if (postfix[i] == ' ') {
+			i++;
+		}
+
+		else if ((postfix[i] >= '0' && postfix[i] <= '9') || postfix[i] == '.') {
+
+			j = 0;
+
+			while ((postfix[i] >= '0' && postfix[i] <= '9') || postfix[i] == '.') {
+				token[j] = postfix[i];
+				j++;
+				i++;
+			}
+
+			token[j] = '\0';
+
+			pushDouble(&S, stringToDouble(token));
+		}
+
+		else {
+			operator = postfix[i];
+
+			popDouble(&S, &operand2);
+			popDouble(&S, &operand1);
+
+			if (operator == '+') {
+				operasi = operand1 + operand2;
+			}
+			else if (operator == '-') {
+				operasi = operand1 - operand2;
+			}
+			else if (operator == '*') {
+				operasi = operand1 * operand2;
+			}
+			else if (operator == '/') {
+				operasi = operand1 / operand2;
+			}
+
+			pushDouble(&S, operasi);
+			i++;
+		}
+	}
+	return infoTopDouble(S);
 }
