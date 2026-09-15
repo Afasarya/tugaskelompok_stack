@@ -331,7 +331,7 @@ void redoCommand(TStackString *undoStack, TStackString *redoStack)
 }
 
 /* Soal 4 - Konversi Infix ke Postfix */
-int precedence(char op){
+int priority(char op){
 	if (op == '+' || op == '-'){
 		return 1;
 	}
@@ -378,7 +378,7 @@ void infixToPostfix(char infix[], char postfix[]){
 			c == '*' || c == '/'){
 			while (!isEmptyStackChar(S) && 
 			infoTopChar(S) != '(' && 
-			precedence(infoTopChar(S)) >= precedence(c)){
+			priority(infoTopChar(S)) >= priority(c)){
 				popChar(&S, &temp);
 				postfix[j] = temp;
 				j++;

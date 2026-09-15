@@ -185,12 +185,12 @@ void undoCommand(TStackString *undoStack, TStackString *redoStack);
 	{F.S.: jika redoStack tidak kosong, TOP redoStack berpindah ke undoStack} */
 void redoCommand(TStackString *undoStack, TStackString *redoStack);
 
-/* function precedence(input op: character) -> integer
+/* function priority(input op: character) -> integer
    {mengembalikan prioritas operator}
    {+ dan - memiliki prioritas 1}
    {* dan / memiliki prioritas 2}
    {selain operator mengembalikan 0} */
-int precedence(char op);
+int priority(char op);
 
 /* procedure infixToPostfix(input infix: string, output postfix: string)
 	{I.S.: infix terdefinisi & valid, operand 1 digit (0-9)}
