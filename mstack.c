@@ -11,7 +11,8 @@
 
 int main() {
 	/*kamus*/
-	char kata[MAKS_STR]; 
+	char kata[MAKS_STR];
+	char infix[] = "3+(4*3)/4";
 	boolean hasil, palindrome;        
 
 	/*algoritma*/
@@ -64,6 +65,11 @@ int main() {
 	printf("\nUNDO%s\n");
 	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
 	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+
+
+  infixToPostfix(infix, kata);
+  printf("Infix   : %s\n", infix);
+  printf("Postfix : %s\n", kata);
 	
 	printf("\n=== TEST EVALUASI POSTFIX ===\n");
 	// Kamus Lokal
