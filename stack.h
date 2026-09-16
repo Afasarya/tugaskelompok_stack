@@ -3,8 +3,12 @@
 
 /* Program   : stack.h */
 /* Deskripsi : file HEADER modul ADT Stack (character, double, string) */
-/* NIM/Nama  : */
-/* Tanggal   : */
+/* NIM/Nama  : 	- Vito Aliffiano Royyandinova (24060125130069)
+								- Ilhami Rizqy Romadzoni Astiko (24060125140199)
+								- M. Naufal Syuja Kurniawan (24060125140233)
+								- Arya Fathdillah Adi Saputra (24060125120039)
+								- Davin Ihza Pramudya (24060125120017) */
+/* Tanggal   : 15 September 2026*/
 /***********************************/
 
 #include "boolean.h"  //salin dari praktikum lalu
@@ -184,6 +188,13 @@ void undoCommand(TStackString *undoStack, TStackString *redoStack);
 	{I.S.: undoStack & redoStack terdefinisi}
 	{F.S.: jika redoStack tidak kosong, TOP redoStack berpindah ke undoStack} */
 void redoCommand(TStackString *undoStack, TStackString *redoStack);
+
+/* function priority(input op: character) -> integer
+   {mengembalikan prioritas operator}
+   {+ dan - memiliki prioritas 1}
+   {* dan / memiliki prioritas 2}
+   {selain operator mengembalikan 0} */
+int priority(char op);
 
 /* procedure infixToPostfix(input infix: string, output postfix: string)
 	{I.S.: infix terdefinisi & valid, operand 1 digit (0-9)}

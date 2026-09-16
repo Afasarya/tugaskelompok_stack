@@ -1,8 +1,12 @@
 /* Program   : mstack.c */
 /* Deskripsi : driver ADT stack (soal 1-5: palindrom, cek kurung, undo/redo,
                 infix->postfix, evaluasi postfix) */
-/* NIM/Nama  : */
-/* Tanggal   : */
+/* NIM/Nama  : 	- Vito Aliffiano Royyandinova (24060125130069)
+								- Ilhami Rizqy Romadzoni Astiko (24060125140199)
+								- M. Naufal Syuja Kurniawan (24060125140233)
+								- Arya Fathdillah Adi Saputra (24060125120039)
+								- Davin Ihza Pramudya (24060125120017) */
+/* Tanggal   : 15 September 2026*/
 /***********************************/
 
 #include <stdio.h>
@@ -11,7 +15,8 @@
 
 int main() {
 	/*kamus*/
-	char kata[MAKS_STR]; 
+	char kata[MAKS_STR];
+	char infix[] = "3+(4*3)/4";
 	boolean hasil, palindrome;        
 
 	/*algoritma*/
@@ -64,5 +69,23 @@ int main() {
 	printf("\nUNDO%s\n");
 	printf("Undo top sekarang: %s\n", undoStack.wadah[undoStack.top]);  // harus "ketik B"
 	printf("Redo top sekarang: %s\n", redoStack.wadah[redoStack.top]);  // harus "ketik C"
+
+
+  infixToPostfix(infix, kata);
+  printf("Infix   : %s\n", infix);
+  printf("Postfix : %s\n", kata);
+	
+	printf("\n=== TEST EVALUASI POSTFIX ===\n");
+	// Kamus Lokal
+    char postfix[MAKS_STR];
+    double hasil_postfix;
+
+    // Algoritma
+    printf("Masukkan postfix: ");
+    scanf("%[^\n]", postfix);
+
+    hasil_postfix = evaluatePostfix(postfix);
+
+    printf("Hasil = %.2f\n", hasil_postfix);
 	return 0;
 }
